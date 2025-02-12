@@ -4,10 +4,9 @@ using Refit;
 
 namespace BitGo.Api.Client.Interfaces;
 
-public interface IBitGoApi
+public interface IBitGoApiService
 {
-	[Get("/user/login")]
 	Task<ApiResponse<ResponseUser.LoginModel>> LoginAsync(
-		[Body] RequestUser.LoginModel data,
+		RequestUser.LoginModel data,
 		CancellationToken cancellationToken = default);
 }
