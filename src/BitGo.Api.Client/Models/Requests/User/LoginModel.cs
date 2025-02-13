@@ -25,6 +25,9 @@ public class LoginModel : IBaseRequestModel
 	[Required, RegularExpression(@"^\d{6}$")]
 	public string? Otp { get; set; }
 
+	/// <summary>
+	/// The password of the user
+	/// </summary>
 	[Required]
 	public string? Password { get; set; }
 }

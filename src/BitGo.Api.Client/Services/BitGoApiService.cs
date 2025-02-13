@@ -1,9 +1,9 @@
 using BitGo.Api.Client.Interfaces;
+using BitGo.Api.Client.Options;
 using RequestUser = BitGo.Api.Client.Models.Requests.User;
 using ResponseUser = BitGo.Api.Client.Models.Responses.User;
 using Refit;
 using Microsoft.Extensions.Options;
-using BitGo.Api.Client.Options;
 
 namespace BitGo.Api.Client.Services;
 
