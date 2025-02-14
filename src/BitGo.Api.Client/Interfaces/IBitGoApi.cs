@@ -11,14 +11,14 @@ public interface IBitGoApi
 	/// https://developers.bitgo.com/api/v2.wallet.list
 	/// </summary>
 	[Get("/wallets")]
-	Task<ApiResponse<IEnumerable<ResponseWallet.WalletModel>>> ListWalletsAsync(
+	Task<ApiResponse<ResponseWallet.WalletListModel>> ListWalletsAsync(
 		CancellationToken cancellationToken = default);
 
 	/// <summary>
 	/// https://developers.bitgo.com/api/v2.wallet.listbycoin
 	/// </summary>
 	[Get("/{coin}/wallet")]
-	Task<ApiResponse<IEnumerable<ResponseWallet.WalletModel>>> ListWalletsAsync(
+	Task<ApiResponse<ResponseWallet.WalletListModel>> ListWalletsAsync(
 		string coin, CancellationToken cancellationToken = default);
 
 	/// <summary>

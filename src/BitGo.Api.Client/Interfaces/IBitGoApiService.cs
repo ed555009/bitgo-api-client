@@ -7,10 +7,10 @@ namespace BitGo.Api.Client.Interfaces;
 
 public interface IBitGoApiService
 {
-	Task<ApiResponse<IEnumerable<ResponseWallet.WalletModel>>> ListWalletsAsync(
+	Task<ApiResponse<ResponseWallet.WalletListModel>> ListWalletsAsync(
 		CancellationToken cancellationToken = default);
 
-	Task<ApiResponse<IEnumerable<ResponseWallet.WalletModel>>> ListWalletsAsync(
+	Task<ApiResponse<ResponseWallet.WalletListModel>> ListWalletsAsync(
 		string coin, CancellationToken cancellationToken = default);
 
 	Task<ApiResponse<ResponseUser.LoginModel>> LoginAsync(

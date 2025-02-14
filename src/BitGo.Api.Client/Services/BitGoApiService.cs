@@ -13,11 +13,11 @@ public class BitGoApiService(IBitGoApi bitGoApi, IOptionsMonitor<BitGoApiOptions
 	private readonly IBitGoApi _bitGoApi = bitGoApi;
 	private readonly BitGoApiOptions _bitGoApiOptions = bitGoApiOptions.CurrentValue;
 
-	public async Task<ApiResponse<IEnumerable<ResponseWallet.WalletModel>>> ListWalletsAsync(
+	public async Task<ApiResponse<ResponseWallet.WalletListModel>> ListWalletsAsync(
 		CancellationToken cancellationToken = default) =>
 			await _bitGoApi.ListWalletsAsync(cancellationToken);
 
-	public async Task<ApiResponse<IEnumerable<ResponseWallet.WalletModel>>> ListWalletsAsync(
+	public async Task<ApiResponse<ResponseWallet.WalletListModel>> ListWalletsAsync(
 		string coin,
 		CancellationToken cancellationToken = default) =>
 			await _bitGoApi.ListWalletsAsync(coin, cancellationToken);
