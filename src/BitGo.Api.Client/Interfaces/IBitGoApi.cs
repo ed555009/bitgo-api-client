@@ -1,4 +1,6 @@
+using RequestPendingApproval = BitGo.Api.Client.Models.Requests.PendingApproval;
 using RequestUser = BitGo.Api.Client.Models.Requests.User;
+using ResponsePendingApproval = BitGo.Api.Client.Models.Responses.PendingApproval;
 using ResponseUser = BitGo.Api.Client.Models.Responses.User;
 using ResponseWallet = BitGo.Api.Client.Models.Responses.Wallet;
 using Refit;
@@ -20,6 +22,51 @@ public interface IBitGoApi
 	[Get("/{coin}/wallet")]
 	Task<ApiResponse<ResponseWallet.WalletListModel>> ListWalletsAsync(
 		string coin, CancellationToken cancellationToken = default);
+
+	/// <summary>
+	/// https://developers.bitgo.com/api/v2.wallet.getbyid
+	/// </summary>
+	[Get("/wallet/{walletId}")]
+	Task<ApiResponse<ResponseWallet.WalletModel>> GetWalletAsync(
+		string walletId, CancellationToken cancellationToken = default);
+
+	/// <summary>
+	/// https://developers.bitgo.com/api/v2.approval.get
+	/// </summary>
+	[Get("/pendingapprovals/{approvalId}")]
+	Task<ApiResponse<ResponsePendingApproval.PendingApprovalModel>> GetPendingApprovalAsync(
+		string approvalId, CancellationToken cancellationToken = default);
+
+	/// <summary>
+	/// https://developers.bitgo.com/api/v2.approval.list
+	/// </summary>
+	[Get("/pendingApprovals")]
+	Task<ApiResponse<IEnumerable<ResponsePendingApproval.PendingApprovalModel>>> ListPendingApprovalsAsync(
+		CancellationToken cancellationToken = default);
+
+	/// <summary>
+	/// https://developers.bitgo.com/api/v2.approval.list
+	/// </summary>
+	[Get("/pendingApprovals")]
+	Task<ApiResponse<IEnumerable<ResponsePendingApproval.PendingApprovalModel>>> ListPendingApprovalsAsync(
+		string walletId, CancellationToken cancellationToken = default);
+
+	/// <summary>
+	/// https://developers.bitgo.com/api/v2.pendingapprovals.count.list
+	/// </summary>
+	// TODO: Correct reponse type
+	[Get("/pendingapprovals/count")]
+	Task<ApiResponse<string>> GetPendingApprovalsCountAsync(
+		CancellationToken cancellationToken = default);
+
+	/// <summary>
+	/// https://developers.bitgo.com/api/v2.approval.update
+	/// </summary>
+	[Put("/pendingapprovals/{approvalId}")]
+	Task<ApiResponse<ResponsePendingApproval.PendingApprovalModel>> UpdatePendingApprovalAsync(
+		string approvalId,
+		[Body] RequestPendingApproval.UpdatePendingApprovalModel data,
+		CancellationToken cancellationToken = default);
 
 	/// <summary>
 	/// https://developers.bitgo.com/api/v2.user.login
