@@ -14,42 +14,42 @@ public interface IBitGoApi
 	/// </summary>
 	[Get("/wallets")]
 	Task<ApiResponse<ResponseWallet.WalletListModel>> ListWalletsAsync(
-		CancellationToken cancellationToken = default);
+		[Authorize("Bearer")] string token, CancellationToken cancellationToken = default);
 
 	/// <summary>
 	/// https://developers.bitgo.com/api/v2.wallet.listbycoin
 	/// </summary>
 	[Get("/{coin}/wallet")]
 	Task<ApiResponse<ResponseWallet.WalletListModel>> ListWalletsAsync(
-		string coin, CancellationToken cancellationToken = default);
+		string coin, [Authorize("Bearer")] string token, CancellationToken cancellationToken = default);
 
 	/// <summary>
 	/// https://developers.bitgo.com/api/v2.wallet.getbyid
 	/// </summary>
 	[Get("/wallet/{walletId}")]
 	Task<ApiResponse<ResponseWallet.WalletModel>> GetWalletAsync(
-		string walletId, CancellationToken cancellationToken = default);
+		string walletId, [Authorize("Bearer")] string token, CancellationToken cancellationToken = default);
 
 	/// <summary>
 	/// https://developers.bitgo.com/api/v2.approval.get
 	/// </summary>
 	[Get("/pendingapprovals/{approvalId}")]
 	Task<ApiResponse<ResponsePendingApproval.PendingApprovalModel>> GetPendingApprovalAsync(
-		string approvalId, CancellationToken cancellationToken = default);
+		string approvalId, [Authorize("Bearer")] string token, CancellationToken cancellationToken = default);
 
 	/// <summary>
 	/// https://developers.bitgo.com/api/v2.approval.list
 	/// </summary>
 	[Get("/pendingApprovals")]
 	Task<ApiResponse<IEnumerable<ResponsePendingApproval.PendingApprovalModel>>> ListPendingApprovalsAsync(
-		CancellationToken cancellationToken = default);
+		[Authorize("Bearer")] string token, CancellationToken cancellationToken = default);
 
 	/// <summary>
 	/// https://developers.bitgo.com/api/v2.approval.list
 	/// </summary>
 	[Get("/pendingApprovals")]
 	Task<ApiResponse<IEnumerable<ResponsePendingApproval.PendingApprovalModel>>> ListPendingApprovalsAsync(
-		string walletId, CancellationToken cancellationToken = default);
+		string walletId, [Authorize("Bearer")] string token, CancellationToken cancellationToken = default);
 
 	/// <summary>
 	/// https://developers.bitgo.com/api/v2.pendingapprovals.count.list
@@ -57,7 +57,7 @@ public interface IBitGoApi
 	// TODO: Correct reponse type
 	[Get("/pendingapprovals/count")]
 	Task<ApiResponse<string>> GetPendingApprovalsCountAsync(
-		CancellationToken cancellationToken = default);
+		[Authorize("Bearer")] string token, CancellationToken cancellationToken = default);
 
 	/// <summary>
 	/// https://developers.bitgo.com/api/v2.approval.update
@@ -66,6 +66,7 @@ public interface IBitGoApi
 	Task<ApiResponse<ResponsePendingApproval.PendingApprovalModel>> UpdatePendingApprovalAsync(
 		string approvalId,
 		[Body] RequestPendingApproval.UpdatePendingApprovalModel data,
+		[Authorize("Bearer")] string token,
 		CancellationToken cancellationToken = default);
 
 	/// <summary>

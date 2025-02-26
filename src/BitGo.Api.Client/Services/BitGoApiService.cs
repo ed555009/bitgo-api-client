@@ -17,30 +17,36 @@ public class BitGoApiService(IBitGoApi bitGoApi, IOptionsMonitor<BitGoApiOptions
 
 	public async Task<ApiResponse<PendingApprovalModel>> GetPendingApprovalAsync(
 		string approvalId,
+		string token,
 		CancellationToken cancellationToken = default) =>
-			await _bitGoApi.GetPendingApprovalAsync(approvalId, cancellationToken);
+			await _bitGoApi.GetPendingApprovalAsync(approvalId, token, cancellationToken);
 
 	public async Task<ApiResponse<string>> GetPendingApprovalsCountAsync(
+		string token,
 		CancellationToken cancellationToken = default) =>
-			await _bitGoApi.GetPendingApprovalsCountAsync(cancellationToken);
+			await _bitGoApi.GetPendingApprovalsCountAsync(token, cancellationToken);
 
 	public async Task<ApiResponse<IEnumerable<PendingApprovalModel>>> ListPendingApprovalsAsync(
+		string token,
 		CancellationToken cancellationToken = default) =>
-			await _bitGoApi.ListPendingApprovalsAsync(cancellationToken);
+			await _bitGoApi.ListPendingApprovalsAsync(token, cancellationToken);
 
 	public async Task<ApiResponse<IEnumerable<PendingApprovalModel>>> ListPendingApprovalsAsync(
 		string walletId,
+		string token,
 		CancellationToken cancellationToken = default) =>
-			await _bitGoApi.ListPendingApprovalsAsync(walletId, cancellationToken);
+			await _bitGoApi.ListPendingApprovalsAsync(walletId, token, cancellationToken);
 
 	public async Task<ApiResponse<ResponseWallet.WalletListModel>> ListWalletsAsync(
+		string token,
 		CancellationToken cancellationToken = default) =>
-			await _bitGoApi.ListWalletsAsync(cancellationToken);
+			await _bitGoApi.ListWalletsAsync(token, cancellationToken);
 
 	public async Task<ApiResponse<ResponseWallet.WalletListModel>> ListWalletsAsync(
 		string coin,
+		string token,
 		CancellationToken cancellationToken = default) =>
-			await _bitGoApi.ListWalletsAsync(coin, cancellationToken);
+			await _bitGoApi.ListWalletsAsync(coin, token, cancellationToken);
 
 	public async Task<ApiResponse<ResponseUser.LoginModel>> LoginAsync(
 		RequestUser.LoginModel data,
@@ -50,6 +56,7 @@ public class BitGoApiService(IBitGoApi bitGoApi, IOptionsMonitor<BitGoApiOptions
 	public async Task<ApiResponse<PendingApprovalModel>> UpdatePendingApprovalAsync(
 		string approvalId,
 		UpdatePendingApprovalModel data,
+		string token,
 		CancellationToken cancellationToken = default) =>
-			await _bitGoApi.UpdatePendingApprovalAsync(approvalId, data, cancellationToken);
+			await _bitGoApi.UpdatePendingApprovalAsync(approvalId, data, token, cancellationToken);
 }
