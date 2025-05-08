@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using BitGo.Api.Client.Interfaces;
 
 namespace BitGo.Api.Client.Options;
@@ -11,6 +12,7 @@ public class BitGoApiOptions : IBitGoOptions
 	/// Gets or sets the base URL for the BitGo API.
 	/// Default value is "https://app.bitgo-test.com/api/v2".
 	/// </summary>
+	[Required, Url]
 	public string BaseUrl { get; set; } = "https://app.bitgo-test.com/api/v2";
 
 	/// <summary>

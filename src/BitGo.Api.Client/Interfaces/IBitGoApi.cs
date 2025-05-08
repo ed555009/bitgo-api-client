@@ -72,7 +72,7 @@ public interface IBitGoApi
 	/// <summary>
 	/// https://developers.bitgo.com/api/v2.user.login
 	/// </summary>
-	[Get("/user/login")]
+	[Post("/user/login")]
 	Task<ApiResponse<ResponseUser.LoginModel>> LoginAsync(
 		[Body] RequestUser.LoginModel data,
 		CancellationToken cancellationToken = default);
