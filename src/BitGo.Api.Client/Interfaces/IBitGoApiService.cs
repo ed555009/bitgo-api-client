@@ -33,6 +33,16 @@ public interface IBitGoApiService
 	Task<ApiResponse<ResponseWallet.WalletListModel>> ListWalletsAsync(
 		string coin, string token, CancellationToken cancellationToken = default);
 
+	/// <summary>
+	/// Retrieves the details of a specific wallet by its ID.
+	/// </summary>
+	/// <param name="walletId">The unique identifier of the wallet.</param>
+	/// <param name="token">The authentication token.</param>
+	/// <param name="cancellationToken">A token to cancel the async operation.</param>
+	/// <returns>The wallet details.</returns>
+	Task<ApiResponse<ResponseWallet.WalletModel>> GetWalletAsync(
+		string walletId, string token, CancellationToken cancellationToken = default);
+
 	// pending approval
 
 	/// <summary>

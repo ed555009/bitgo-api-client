@@ -7,6 +7,7 @@ using Refit;
 using Microsoft.Extensions.Options;
 using BitGo.Api.Client.Models.Responses.PendingApproval;
 using BitGo.Api.Client.Models.Requests.PendingApproval;
+using BitGo.Api.Client.Models.Responses.Wallet;
 
 namespace BitGo.Api.Client.Services;
 
@@ -25,6 +26,12 @@ public class BitGoApiService(IBitGoApi bitGoApi, IOptionsMonitor<BitGoApiOptions
 		string token,
 		CancellationToken cancellationToken = default) =>
 			await _bitGoApi.GetPendingApprovalsCountAsync(token, cancellationToken);
+
+	public async Task<ApiResponse<WalletModel>> GetWalletAsync(
+		string walletId,
+		string token,
+		CancellationToken cancellationToken = default) =>
+			await _bitGoApi.GetWalletAsync(walletId, token, cancellationToken);
 
 	public async Task<ApiResponse<IEnumerable<PendingApprovalModel>>> ListPendingApprovalsAsync(
 		string token,
