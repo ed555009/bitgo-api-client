@@ -15,4 +15,5 @@ public class WalletModel
 	public string? SpendableBalanceString { get; set; }
 	public string? StakingBalanceString { get; set; }
 	public string? RewardBalanceString { get; set; }
+	public decimal GetBalance(int decimals) => decimal.Parse(BalanceString ?? "0") / (decimal)Math.Pow(10, decimals);
 }
