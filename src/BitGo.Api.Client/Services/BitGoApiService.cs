@@ -8,6 +8,7 @@ using Microsoft.Extensions.Options;
 using BitGo.Api.Client.Models.Responses.PendingApproval;
 using BitGo.Api.Client.Models.Requests.PendingApproval;
 using BitGo.Api.Client.Models.Responses.Wallet;
+using BitGo.Api.Client.Models.Responses.Transfer;
 
 namespace BitGo.Api.Client.Services;
 
@@ -27,6 +28,14 @@ public class BitGoApiService(IBitGoApi bitGoApi, IOptionsMonitor<BitGoApiOptions
 		CancellationToken cancellationToken = default) =>
 			await _bitGoApi.GetPendingApprovalsCountAsync(token, cancellationToken);
 
+	public async Task<ApiResponse<TransferModel>> GetTransferAsync(
+		string coin,
+		string walletId,
+		string transferId,
+		string token,
+		CancellationToken cancellationToken = default) =>
+			await _bitGoApi.GetTransferAsync(coin, walletId, transferId, token, cancellationToken);
+
 	public async Task<ApiResponse<WalletModel>> GetWalletAsync(
 		string walletId,
 		string token,
@@ -43,6 +52,14 @@ public class BitGoApiService(IBitGoApi bitGoApi, IOptionsMonitor<BitGoApiOptions
 		string token,
 		CancellationToken cancellationToken = default) =>
 			await _bitGoApi.ListPendingApprovalsAsync(walletId, token, cancellationToken);
+
+	public async Task<ApiResponse<TransferListModel>> ListTransfersAsync(
+		string coin,
+		string walletId,
+		string token,
+		string? prevId = null,
+		CancellationToken cancellationToken = default) =>
+			await _bitGoApi.ListTransfersAsync(coin, walletId, prevId ?? "", token, cancellationToken);
 
 	public async Task<ApiResponse<ResponseWallet.WalletListModel>> ListWalletsAsync(
 		string token,

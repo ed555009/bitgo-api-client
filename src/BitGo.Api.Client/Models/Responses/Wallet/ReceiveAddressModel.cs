@@ -10,5 +10,5 @@ public class ReceiveAddressModel
 	public string? Wallet { get; set; }
 	public DateTimeOffset? LastConsolidatedTime { get; set; }
 	public bool? NeedsConsolidation { get; set; }
-	public CoinSpecificModel? coinSpecific { get; set; }
+	public CoinSpecificModel? CoinSpecific { get; set; }
 }

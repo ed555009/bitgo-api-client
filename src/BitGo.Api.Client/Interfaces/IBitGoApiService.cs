@@ -3,6 +3,7 @@ using RequestUser = BitGo.Api.Client.Models.Requests.User;
 using ResponsePendingApproval = BitGo.Api.Client.Models.Responses.PendingApproval;
 using ResponseUser = BitGo.Api.Client.Models.Responses.User;
 using ResponseWallet = BitGo.Api.Client.Models.Responses.Wallet;
+using ResponseTransfer = BitGo.Api.Client.Models.Responses.Transfer;
 using Refit;
 
 namespace BitGo.Api.Client.Interfaces;
@@ -95,6 +96,39 @@ public interface IBitGoApiService
 		string approvalId,
 		RequestPendingApproval.UpdatePendingApprovalModel data,
 		string token,
+		CancellationToken cancellationToken = default);
+
+	// transfer
+	/// <summary>
+	/// Retrieves the details of a specific transfer by its ID for a given coin and wallet.
+	/// </summary>
+	/// <param name="coin">The coin type (e.g., 'btc', 'eth').</param>
+	/// <param name="walletId">The unique identifier of the wallet.</param>
+	/// <param name="transferId">The unique identifier of the transfer.</param>
+	/// <param name="token">The authentication token.</param>
+	/// <param name="cancellationToken">A token to cancel the async operation.</param>
+	/// <returns>The transfer details.</returns>
+	Task<ApiResponse<ResponseTransfer.TransferModel>> GetTransferAsync(
+		string coin,
+		string walletId,
+		string transferId,
+		string token,
+		CancellationToken cancellationToken = default);
+
+	/// <summary>
+	/// Lists transfers for a specific coin and wallet, optionally paginated by a previous transfer ID.
+	/// </summary>
+	/// <param name="coin">The coin type (e.g., 'btc', 'eth').</param>
+	/// <param name="walletId">The unique identifier of the wallet.</param>
+	/// <param name="prevId">The ID of the previous transfer for pagination (optional).</param>
+	/// <param name="token">The authentication token.</param>
+	/// <param name="cancellationToken">A token to cancel the async operation.</param>
+	/// <returns>A list of transfers for the specified wallet and coin.</returns>
+	Task<ApiResponse<ResponseTransfer.TransferListModel>> ListTransfersAsync(
+		string coin,
+		string walletId,
+		string token,
+		string? prevId = null,
 		CancellationToken cancellationToken = default);
 
 	// user
