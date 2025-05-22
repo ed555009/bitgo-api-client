@@ -61,7 +61,7 @@ public interface IBitGoApiService
 	/// <param name="token">The authentication token.</param>
 	/// <param name="cancellationToken">A token to cancel the async operation.</param>
 	/// <returns>A list of pending approvals.</returns>
-	Task<ApiResponse<IEnumerable<ResponsePendingApproval.PendingApprovalModel>>> ListPendingApprovalsAsync(
+	Task<ApiResponse<ResponsePendingApproval.PendingApprovalsListModel>> ListPendingApprovalsAsync(
 		string token, CancellationToken cancellationToken = default);
 
 	/// <summary>
@@ -71,7 +71,7 @@ public interface IBitGoApiService
 	/// <param name="token">The authentication token.</param>
 	/// <param name="cancellationToken">A token to cancel the async operation.</param>
 	/// <returns>A list of pending approvals for the specified wallet.</returns>
-	Task<ApiResponse<IEnumerable<ResponsePendingApproval.PendingApprovalModel>>> ListPendingApprovalsAsync(
+	Task<ApiResponse<ResponsePendingApproval.PendingApprovalsListModel>> ListPendingApprovalsAsync(
 		string walletId, string token, CancellationToken cancellationToken = default);
 
 	/// <summary>

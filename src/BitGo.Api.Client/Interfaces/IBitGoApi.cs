@@ -41,14 +41,14 @@ public interface IBitGoApi
 	/// https://developers.bitgo.com/api/v2.approval.list
 	/// </summary>
 	[Get("/pendingApprovals")]
-	Task<ApiResponse<IEnumerable<ResponsePendingApproval.PendingApprovalModel>>> ListPendingApprovalsAsync(
+	Task<ApiResponse<ResponsePendingApproval.PendingApprovalsListModel>> ListPendingApprovalsAsync(
 		[Authorize("Bearer")] string token, CancellationToken cancellationToken = default);
 
 	/// <summary>
 	/// https://developers.bitgo.com/api/v2.approval.list
 	/// </summary>
-	[Get("/pendingApprovals")]
-	Task<ApiResponse<IEnumerable<ResponsePendingApproval.PendingApprovalModel>>> ListPendingApprovalsAsync(
+	[Get("/pendingApprovals?walletId={walletId}")]
+	Task<ApiResponse<ResponsePendingApproval.PendingApprovalsListModel>> ListPendingApprovalsAsync(
 		string walletId, [Authorize("Bearer")] string token, CancellationToken cancellationToken = default);
 
 	/// <summary>

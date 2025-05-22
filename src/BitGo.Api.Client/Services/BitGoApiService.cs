@@ -33,12 +33,12 @@ public class BitGoApiService(IBitGoApi bitGoApi, IOptionsMonitor<BitGoApiOptions
 		CancellationToken cancellationToken = default) =>
 			await _bitGoApi.GetWalletAsync(walletId, token, cancellationToken);
 
-	public async Task<ApiResponse<IEnumerable<PendingApprovalModel>>> ListPendingApprovalsAsync(
+	public async Task<ApiResponse<PendingApprovalsListModel>> ListPendingApprovalsAsync(
 		string token,
 		CancellationToken cancellationToken = default) =>
 			await _bitGoApi.ListPendingApprovalsAsync(token, cancellationToken);
 
-	public async Task<ApiResponse<IEnumerable<PendingApprovalModel>>> ListPendingApprovalsAsync(
+	public async Task<ApiResponse<PendingApprovalsListModel>> ListPendingApprovalsAsync(
 		string walletId,
 		string token,
 		CancellationToken cancellationToken = default) =>
