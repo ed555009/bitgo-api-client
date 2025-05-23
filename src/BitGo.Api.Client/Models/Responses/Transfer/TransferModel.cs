@@ -24,4 +24,5 @@ public class TransferModel : BaseResponseModel
 	public string? Comment { get; set; }
 	public CoinSpecificModel? CoinSpecific { get; set; }
 	public string? Label { get; set; }
+	public IEnumerable<EntryModel>? Entries { get; set; }
 }
