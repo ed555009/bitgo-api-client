@@ -1,13 +1,15 @@
 using RequestPendingApproval = BitGo.Api.Client.Models.Requests.PendingApprovals;
-using RequestUser = BitGo.Api.Client.Models.Requests.Users;
 using ResponsePendingApproval = BitGo.Api.Client.Models.Responses.PendingApprovals;
-using ResponseUser = BitGo.Api.Client.Models.Responses.Users;
-using ResponseWallet = BitGo.Api.Client.Models.Responses.Wallets;
 using ResponseTransfer = BitGo.Api.Client.Models.Responses.Transfers;
+using RequestUser = BitGo.Api.Client.Models.Requests.Users;
+using ResponseUser = BitGo.Api.Client.Models.Responses.Users;
+using RequestWallet = BitGo.Api.Client.Models.Requests.Wallets;
+using ResponseWallet = BitGo.Api.Client.Models.Responses.Wallets;
 using Refit;
 
 namespace BitGo.Api.Client.Interfaces;
 
+[Headers("User-Agent: BitGo.Api.Client", "Accept: application/json", "Content-Type: application/json")]
 public interface IBitGoApi
 {
 	/// <summary>
@@ -30,6 +32,17 @@ public interface IBitGoApi
 	[Get("/wallet/{walletId}?allTokens=true")]
 	Task<ApiResponse<ResponseWallet.WalletModel>> GetWalletAsync(
 		string walletId, [Authorize("Bearer")] string token, CancellationToken cancellationToken = default);
+
+	/// <summary>
+	/// https://developers.bitgo.com/api/v2.wallet.tx.initiate
+	/// </summary>
+	[Post("/{coin}/wallet/{walletId}/tx/initiate")]
+	Task<ApiResponse<ResponseWallet.InitiateTransactionModel>> InitiateTransactionAsync(
+			string coin,
+			string walletId,
+			[Body] RequestWallet.InitiateTransactionModel data,
+			[Authorize("Bearer")] string token,
+			CancellationToken cancellationToken = default);
 
 	/// <summary>
 	/// https://developers.bitgo.com/api/v2.approval.get

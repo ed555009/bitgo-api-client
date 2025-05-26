@@ -1,9 +1,10 @@
 using System.ComponentModel.DataAnnotations;
 using BitGo.Api.Client.Enums;
+using BitGo.Api.Client.Interfaces;
 
 namespace BitGo.Api.Client.Models.Requests.PendingApprovals;
 
-public class UpdatePendingApprovalModel
+public class UpdatePendingApprovalModel : IBaseRequestModel
 {
 	/// <summary>
 	/// Second factor authentication token
