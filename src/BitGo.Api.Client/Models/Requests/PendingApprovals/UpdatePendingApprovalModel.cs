@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using BitGo.Api.Client.Enums;
 
-namespace BitGo.Api.Client.Models.Requests.PendingApproval;
+namespace BitGo.Api.Client.Models.Requests.PendingApprovals;
 
 public class UpdatePendingApprovalModel
 {

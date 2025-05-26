@@ -1,4 +1,4 @@
-namespace BitGo.Api.Client.Models.Responses.PendingApproval;
+namespace BitGo.Api.Client.Models.Responses.PendingApprovals;
 
 public class PendingApprovalsListModel : BaseResponseModel
 {

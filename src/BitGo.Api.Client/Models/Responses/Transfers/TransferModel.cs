@@ -1,8 +1,8 @@
 using System.Text.Json.Serialization;
 using BitGo.Api.Client.Enums;
-using BitGo.Api.Client.Models.Responses.Wallet;
+using BitGo.Api.Client.Models.Responses.Wallets;
 
-namespace BitGo.Api.Client.Models.Responses.Transfer;
+namespace BitGo.Api.Client.Models.Responses.Transfers;
 
 public class TransferModel : BaseResponseModel
 {

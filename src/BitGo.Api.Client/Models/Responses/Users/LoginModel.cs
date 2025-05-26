@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace BitGo.Api.Client.Models.Responses.User;
+namespace BitGo.Api.Client.Models.Responses.Users;
 
 public class LoginModel : BaseResponseModel
 {

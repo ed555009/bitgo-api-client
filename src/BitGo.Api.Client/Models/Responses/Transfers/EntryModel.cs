@@ -1,4 +1,4 @@
-namespace BitGo.Api.Client.Models.Responses.Transfer;
+namespace BitGo.Api.Client.Models.Responses.Transfers;
 
 public class EntryModel
 {

@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using BitGo.Api.Client.Interfaces;
 
-namespace BitGo.Api.Client.Models.Requests.User;
+namespace BitGo.Api.Client.Models.Requests.Users;
 
 /// <summary>
 /// Represents the model for user login request

@@ -1,4 +1,4 @@
-namespace BitGo.Api.Client.Models.Responses.Wallet;
+namespace BitGo.Api.Client.Models.Responses.Wallets;
 
 public class UserModel
 {

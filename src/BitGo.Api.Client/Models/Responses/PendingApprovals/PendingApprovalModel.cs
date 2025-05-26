@@ -1,6 +1,6 @@
 using BitGo.Api.Client.Enums;
 
-namespace BitGo.Api.Client.Models.Responses.PendingApproval;
+namespace BitGo.Api.Client.Models.Responses.PendingApprovals;
 
 public class PendingApprovalModel
 {
