@@ -25,4 +25,7 @@ public class TransferModel : BaseResponseModel
 	public CoinSpecificModel? CoinSpecific { get; set; }
 	public string? Label { get; set; }
 	public IEnumerable<EntryModel>? Entries { get; set; }
+
+	[JsonIgnore]
+	public string? FeeCoin => Coin?.Split(':')[0];
 }
