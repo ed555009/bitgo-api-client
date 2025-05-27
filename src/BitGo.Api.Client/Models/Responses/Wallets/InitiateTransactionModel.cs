@@ -1,3 +1,5 @@
+using BitGo.Api.Client.Models.Responses.Transfers;
+
 namespace BitGo.Api.Client.Models.Responses.Wallets;
 
 public class InitiateTransactionModel : BaseResponseModel

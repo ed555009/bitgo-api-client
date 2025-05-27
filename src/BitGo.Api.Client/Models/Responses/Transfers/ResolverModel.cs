@@ -1,4 +1,4 @@
-namespace BitGo.Api.Client.Models.Responses.Wallets;
+namespace BitGo.Api.Client.Models.Responses.Transfers;
 
 public class ResolverModel
 {

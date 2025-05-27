@@ -1,10 +1,12 @@
-namespace BitGo.Api.Client.Models.Responses.Wallets;
+using BitGo.Api.Client.Models.Responses.Wallets;
+
+namespace BitGo.Api.Client.Models.Responses.Transfers;
 
 public class TransactionRequestModel
 {
 	public CoinSpecificModel? CoinSpecific { get; set; }
 	public string? Comment { get; set; }
-	public string? Fee { get; set; }
+	// public string? Fee { get; set; }
 	public bool? IsUnsigned { get; set; }
 	public IEnumerable<RecipientModel>? Recipients { get; set; }
 	public string? RequestedAmount { get; set; }
