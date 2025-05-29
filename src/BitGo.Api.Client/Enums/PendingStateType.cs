@@ -1,7 +1,9 @@
 using System.ComponentModel;
+using System.Text.Json.Serialization;
 
 namespace BitGo.Api.Client.Enums;
 
+[JsonConverter(typeof(JsonStringEnumConverter))]
 public enum PendingStateType
 {
 	[Description("待處理")]
@@ -20,5 +22,14 @@ public enum PendingStateType
 	PendingVideoApproval,
 
 	[Description("待身份驗證")]
-	PendingIdVerification
+	PendingIdVerification,
+
+	[Description("已核准")]
+	Approved,
+
+	[Description("處理中")]
+	Processing,
+
+	[Description("已拒絕")]
+	Rejected
 }

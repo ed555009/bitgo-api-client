@@ -1,4 +1,4 @@
-using System.Runtime.Serialization;
+using System.ComponentModel;
 using System.Text.Json.Serialization;
 
 namespace BitGo.Api.Client.Enums;
@@ -6,12 +6,9 @@ namespace BitGo.Api.Client.Enums;
 [JsonConverter(typeof(JsonStringEnumConverter))]
 public enum ApprovalStateType
 {
-	[EnumMember(Value = "approved")]
+	[Description("核准")]
 	Approved,
 
-	[EnumMember(Value = "pending")]
-	Pending,
-
-	[EnumMember(Value = "rejected")]
+	[Description("拒絕")]
 	Rejected
 }

@@ -9,7 +9,7 @@ public class PendingApprovalModel
 	public string? Wallet { get; set; }
 	public string? WalletLabel { get; set; }
 	public string? Creator { get; set; }
-	public ApprovalStateType? State { get; set; }
+	public PendingStateType? State { get; set; }
 	public int? ApprovalsRequired { get; set; }
 	public string? TxRequestId { get; set; }
 	public DateTimeOffset? CreateDate { get; set; }

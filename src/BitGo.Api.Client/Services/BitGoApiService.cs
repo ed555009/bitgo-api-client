@@ -2,7 +2,6 @@ using BitGo.Api.Client.Interfaces;
 using BitGo.Api.Client.Options;
 using RequestUser = BitGo.Api.Client.Models.Requests.Users;
 using ResponseUser = BitGo.Api.Client.Models.Responses.Users;
-using ResponseWallet = BitGo.Api.Client.Models.Responses.Wallets;
 using Refit;
 using Microsoft.Extensions.Options;
 using BitGo.Api.Client.Models.Responses.PendingApprovals;

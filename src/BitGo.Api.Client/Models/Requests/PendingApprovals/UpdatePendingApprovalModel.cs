@@ -15,5 +15,6 @@ public class UpdatePendingApprovalModel : IBaseRequestModel
 	/// <summary>
 	/// The state of the approval
 	/// </summary>
+	[Required, EnumDataType(typeof(ApprovalStateType))]
 	public ApprovalStateType? State { get; set; }
 }
