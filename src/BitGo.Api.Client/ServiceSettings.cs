@@ -13,7 +13,7 @@ public static class ServiceSettings
 			{
 				Converters =
 				{
-				new JsonStringEnumConverter(JsonNamingPolicy.CamelCase, allowIntegerValues: true)
+					new JsonStringEnumConverter(JsonNamingPolicy.CamelCase, allowIntegerValues: true)
 				},
 				PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
 				DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
