@@ -97,10 +97,11 @@ public interface IBitGoApi
 	/// <summary>
 	/// https://developers.bitgo.com/api/v2.wallet.listtransfers
 	/// </summary>
-	[Get("/{coin}/wallet/{walletId}/transfer?allTokens=true&prevId={prevId}")]
+	[Get("/{coin}/wallet/{walletId}/transfer?allTokens=true&limit={limit}&prevId={prevId}")]
 	Task<ApiResponse<ResponseTransfer.TransferListModel>> ListTransfersAsync(
 		string coin,
 		string walletId,
+		int limit,
 		string prevId,
 		[Authorize("Bearer")] string token,
 		CancellationToken cancellationToken = default);

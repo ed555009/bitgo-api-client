@@ -65,9 +65,10 @@ public class BitGoApiService(IBitGoApi bitGoApi, IOptionsMonitor<BitGoApiOptions
 		string coin,
 		string walletId,
 		string token,
+		int limit = 25,
 		string? prevId = null,
 		CancellationToken cancellationToken = default) =>
-			await _bitGoApi.ListTransfersAsync(coin, walletId, prevId ?? "", token, cancellationToken);
+			await _bitGoApi.ListTransfersAsync(coin, walletId, limit, prevId ?? "", token, cancellationToken);
 
 	public async Task<ApiResponse<WalletListModel>> ListWalletsAsync(
 		string token,

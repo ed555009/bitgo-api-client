@@ -137,14 +137,16 @@ public interface IBitGoApiService
 	/// </summary>
 	/// <param name="coin">The coin type (e.g., 'btc', 'eth').</param>
 	/// <param name="walletId">The unique identifier of the wallet.</param>
-	/// <param name="prevId">The ID of the previous transfer for pagination (optional).</param>
 	/// <param name="token">The authentication token.</param>
+	/// <param name="limit">The maximum number of transfers to return (default is 25).</param>
+	/// <param name="prevId">The ID of the previous transfer for pagination (optional).</param>
 	/// <param name="cancellationToken">A token to cancel the async operation.</param>
 	/// <returns>A list of transfers for the specified wallet and coin.</returns>
 	Task<ApiResponse<ResponseTransfer.TransferListModel>> ListTransfersAsync(
 		string coin,
 		string walletId,
 		string token,
+		int limit = 25,
 		string? prevId = null,
 		CancellationToken cancellationToken = default);
 
