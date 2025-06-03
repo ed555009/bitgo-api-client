@@ -29,7 +29,7 @@ public interface IBitGoApi
 	/// <summary>
 	/// https://developers.bitgo.com/api/v2.wallet.getbyid
 	/// </summary>
-	[Get("/wallet/{walletId}?allTokens=true")]
+	[Get("/wallet/{walletId}?allTokens=true&expandAdvancedWhitelist=true")]
 	Task<ApiResponse<ResponseWallet.WalletModel>> GetWalletAsync(
 		string walletId, [Authorize("Bearer")] string token, CancellationToken cancellationToken = default);
 

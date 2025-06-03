@@ -9,6 +9,7 @@ public class WalletModel
 	public bool? Deleted { get; set; }
 	public bool IsCold { get; set; }
 	public int? ApprovalsRequired { get; set; }
+	public AdminModel? Admin { get; set; }
 	public CoinSpecificModel? CoinSpecific { get; set; }
 	public string? BalanceString { get; set; }
 	public string? ConfirmedBalanceString { get; set; }
