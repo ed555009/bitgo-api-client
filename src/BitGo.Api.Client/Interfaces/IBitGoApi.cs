@@ -7,6 +7,7 @@ using RequestTransaction = BitGo.Api.Client.Models.Requests.Transactions;
 using ResponseWallet = BitGo.Api.Client.Models.Responses.Wallets;
 using Refit;
 using BitGo.Api.Client.Models.Responses.Transactions;
+using BitGo.Api.Client.Models.Responses.Transfers;
 
 namespace BitGo.Api.Client.Interfaces;
 
@@ -53,6 +54,17 @@ public interface IBitGoApi
 		string coin,
 		string walletId,
 		[Body] RequestTransaction.BuildTransactionModel data,
+		[Authorize("Bearer")] string token,
+		CancellationToken cancellationToken = default);
+
+	/// <summary>
+	/// https://developers.bitgo.com/api/v2.wallet.tx.send
+	/// </summary>
+	[Post("/{coin}/wallet/{walletId}/tx/send")]
+	Task<ApiResponse<TransferModel>> SendHalfSignedTransactionAsync(
+		string coin,
+		string walletId,
+		[Body] RequestTransaction.SendHalfSignedTransactionModel data,
 		[Authorize("Bearer")] string token,
 		CancellationToken cancellationToken = default);
 
@@ -124,5 +136,14 @@ public interface IBitGoApi
 	[Post("/user/login")]
 	Task<ApiResponse<ResponseUser.LoginModel>> LoginAsync(
 		[Body] RequestUser.LoginModel data,
+		CancellationToken cancellationToken = default);
+
+	/// <summary>
+	/// https://developers.bitgo.com/api/user.unlock
+	/// </summary>
+	[Post("/user/unlock")]
+	Task<ApiResponse<ResponseUser.UnlockModel>> UnlockAsync(
+		[Body] RequestUser.UnlockModel data,
+		[Authorize("Bearer")] string token,
 		CancellationToken cancellationToken = default);
 }

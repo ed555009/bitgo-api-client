@@ -7,6 +7,7 @@ using ResponseWallet = BitGo.Api.Client.Models.Responses.Wallets;
 using ResponseTransfer = BitGo.Api.Client.Models.Responses.Transfers;
 using Refit;
 using BitGo.Api.Client.Models.Responses.Transactions;
+using BitGo.Api.Client.Models.Responses.Transfers;
 
 namespace BitGo.Api.Client.Interfaces;
 
@@ -64,10 +65,35 @@ public interface IBitGoApiService
 		string token,
 		CancellationToken cancellationToken = default);
 
+	/// <summary>
+	/// Builds a transaction for a specific coin and wallet.
+	/// </summary>
+	/// <param name="coin">The coin type (e.g., 'btc', 'eth').</param>
+	/// <param name="walletId">The unique identifier of the wallet.</param>
+	/// <param name="data">The transaction build data.</param>
+	/// <param name="token">The authentication token.</param>
+	/// <param name="cancellationToken">A token to cancel the async operation.</param>
+	/// <returns>The response from the transaction build operation.</returns>
 	Task<ApiResponse<BuildTransactionModel>> BuildTransactionAsync(
 		string coin,
 		string walletId,
 		RequestTransaction.BuildTransactionModel data,
+		string token,
+		CancellationToken cancellationToken = default);
+
+	/// <summary>
+	/// Sends a half-signed transaction for a specific coin and wallet.
+	/// </summary>
+	/// <param name="coin">The coin type (e.g., 'btc', 'eth').</param>
+	/// <param name="walletId">The unique identifier of the wallet.</param>
+	/// <param name="data">The half-signed transaction data.</param>
+	/// <param name="token">The authentication token.</param>
+	/// <param name="cancellationToken">A token to cancel the async operation.</param>
+	/// <returns>The transfer response after sending the half-signed transaction.</returns>
+	Task<ApiResponse<TransferModel>> SendHalfSignedTransactionAsync(
+		string coin,
+		string walletId,
+		RequestTransaction.SendHalfSignedTransactionModel data,
 		string token,
 		CancellationToken cancellationToken = default);
 
@@ -170,5 +196,17 @@ public interface IBitGoApiService
 	/// <returns>The login response containing session information.</returns>
 	Task<ApiResponse<ResponseUser.LoginModel>> LoginAsync(
 		RequestUser.LoginModel data,
+		CancellationToken cancellationToken = default);
+
+	/// <summary>
+	/// Unlocks the user account using the provided credentials and token.
+	/// </summary>
+	/// <param name="data">The unlock credentials.</param>
+	/// <param name="token">The authentication token.</param>
+	/// <param name="cancellationToken">A token to cancel the async operation.</param>
+	/// <returns>The unlock response containing session information.</returns>
+	Task<ApiResponse<ResponseUser.UnlockModel>> UnlockAsync(
+		RequestUser.UnlockModel data,
+		string token,
 		CancellationToken cancellationToken = default);
 }
