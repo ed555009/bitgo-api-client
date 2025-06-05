@@ -3,11 +3,10 @@ using System.Text.Json.Serialization;
 namespace BitGo.Api.Client.Enums;
 
 [JsonConverter(typeof(JsonStringEnumConverter))]
-public enum UserPermissionTypes
+public enum MutabilityConstraintType
 {
-	Admin,
-	Spend,
-	View,
-	Freeze,
-	Trade
+	Unlocked,
+	Permanent,
+	Sticky,
+	Managed
 }

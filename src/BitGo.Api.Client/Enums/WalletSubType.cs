@@ -3,10 +3,10 @@ using System.Text.Json.Serialization;
 namespace BitGo.Api.Client.Enums;
 
 [JsonConverter(typeof(JsonStringEnumConverter))]
-public enum ConditionEntryTypes
+public enum WalletSubType
 {
-	Address,
-	EnterpriseId,
-	WalletId,
-	OrganizationId
+	DistributedCustody,
+	PairedCustodial,
+	CustodialHot,
+	CustodialCold
 }

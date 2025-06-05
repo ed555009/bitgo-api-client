@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 namespace BitGo.Api.Client.Enums;
 
 [JsonConverter(typeof(JsonStringEnumConverter))]
-public enum TransferState
+public enum TransferStateType
 {
 	[Description("已確認")]
 	Confirmed,

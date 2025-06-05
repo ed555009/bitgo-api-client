@@ -5,7 +5,7 @@ namespace BitGo.Api.Client.Models.Responses.Wallets;
 public class RuleModel
 {
 	public string? Id { get; set; }
-	public WalletRuleTypes? Type { get; set; }
+	public WalletRuleType? Type { get; set; }
 	// public ActionModel? Action { get; set; }
 	public bool? Latest { get; set; }
 	public int? Version { get; set; }

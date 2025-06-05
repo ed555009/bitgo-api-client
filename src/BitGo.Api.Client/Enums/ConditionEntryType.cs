@@ -3,10 +3,10 @@ using System.Text.Json.Serialization;
 namespace BitGo.Api.Client.Enums;
 
 [JsonConverter(typeof(JsonStringEnumConverter))]
-public enum MutabilityConstraintTypes
+public enum ConditionEntryType
 {
-	Unlocked,
-	Permanent,
-	Sticky,
-	Managed
+	Address,
+	EnterpriseId,
+	WalletId,
+	OrganizationId
 }

@@ -20,7 +20,7 @@ public class TransferModel : BaseResponseModel
 	public string? FeeString { get; set; }
 	public decimal? Usd { get; set; }
 	public decimal? UsdRate { get; set; }
-	public TransferState? State { get; set; }
+	public TransferStateType? State { get; set; }
 	public string? Comment { get; set; }
 	public CoinSpecificModel? CoinSpecific { get; set; }
 	public string? Label { get; set; }

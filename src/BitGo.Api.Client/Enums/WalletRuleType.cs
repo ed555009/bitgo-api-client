@@ -3,7 +3,7 @@ using System.Text.Json.Serialization;
 namespace BitGo.Api.Client.Enums;
 
 [JsonConverter(typeof(JsonStringEnumConverter))]
-public enum WalletRuleTypes
+public enum WalletRuleType
 {
 	AdvancedWhitelist,
 	AllTx,

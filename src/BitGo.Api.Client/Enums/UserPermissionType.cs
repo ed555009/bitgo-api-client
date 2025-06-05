@@ -3,12 +3,11 @@ using System.Text.Json.Serialization;
 namespace BitGo.Api.Client.Enums;
 
 [JsonConverter(typeof(JsonStringEnumConverter))]
-public enum WalletTypes
+public enum UserPermissionType
 {
-	Backing,
-	Cold,
-	Custodial,
-	CustodialPaired,
-	Hot,
-	Trading
+	Admin,
+	Spend,
+	View,
+	Freeze,
+	Trade
 }
