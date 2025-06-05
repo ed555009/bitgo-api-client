@@ -1,21 +1,27 @@
 using BitGo.Api.Client.Interfaces;
-using BitGo.Api.Client.Options;
 using RequestUser = BitGo.Api.Client.Models.Requests.Users;
 using ResponseUser = BitGo.Api.Client.Models.Responses.Users;
 using Refit;
-using Microsoft.Extensions.Options;
 using BitGo.Api.Client.Models.Responses.PendingApprovals;
 using BitGo.Api.Client.Models.Requests.PendingApprovals;
 using BitGo.Api.Client.Models.Responses.Wallets;
 using BitGo.Api.Client.Models.Responses.Transfers;
-using RequestWallet = BitGo.Api.Client.Models.Requests.Wallets;
+using RequesTransaction = BitGo.Api.Client.Models.Requests.Transactions;
+using BitGo.Api.Client.Models.Responses.Transactions;
 
 namespace BitGo.Api.Client.Services;
 
-public class BitGoApiService(IBitGoApi bitGoApi, IOptionsMonitor<BitGoApiOptions> bitGoApiOptions) : IBitGoApiService
+public class BitGoApiService(IBitGoApi bitGoApi) : IBitGoApiService
 {
 	private readonly IBitGoApi _bitGoApi = bitGoApi;
-	private readonly BitGoApiOptions _bitGoApiOptions = bitGoApiOptions.CurrentValue;
+
+	public async Task<ApiResponse<BuildTransactionModel>> BuildTransactionAsync(
+		string coin,
+		string walletId,
+		RequesTransaction.BuildTransactionModel data,
+		string token,
+		CancellationToken cancellationToken = default) =>
+			await _bitGoApi.BuildTransactionAsync(coin, walletId, data, token, cancellationToken);
 
 	public async Task<ApiResponse<PendingApprovalModel>> GetPendingApprovalAsync(
 		string approvalId,
@@ -45,7 +51,7 @@ public class BitGoApiService(IBitGoApi bitGoApi, IOptionsMonitor<BitGoApiOptions
 	public async Task<ApiResponse<InitiateTransactionModel>> InitiateTransactionAsync(
 		string coin,
 		string walletId,
-		RequestWallet.InitiateTransactionModel data,
+		RequesTransaction.InitiateTransactionModel data,
 		string token,
 		CancellationToken cancellationToken = default) =>
 			await _bitGoApi.InitiateTransactionAsync(coin, walletId, data, token, cancellationToken);

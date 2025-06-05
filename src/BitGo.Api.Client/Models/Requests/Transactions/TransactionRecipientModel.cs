@@ -1,8 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace BitGo.Api.Client.Models.Requests.Wallets;
+namespace BitGo.Api.Client.Models.Requests.Transactions;
 
-public class InitiateTransactionRecipientModel
+public class TransactionRecipientModel
 {
 	[Required, RegularExpression(@"^(-?\d+|max)$")]
 	public string? Amount { get; set; }

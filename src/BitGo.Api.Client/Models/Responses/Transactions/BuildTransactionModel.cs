@@ -1,8 +1,9 @@
 using BitGo.Api.Client.Models.Responses.Transfers;
+using BitGo.Api.Client.Models.Responses.Wallets;
 
-namespace BitGo.Api.Client.Models.Responses.Wallets;
+namespace BitGo.Api.Client.Models.Responses.Transactions;
 
-public class InitiateTransactionModel : BaseResponseModel
+public class BuildTransactionModel : BaseResponseModel
 {
 	public string? Id { get; set; }
 	public string? Coin { get; set; }
@@ -11,7 +12,7 @@ public class InitiateTransactionModel : BaseResponseModel
 	public string? Organization { get; set; }
 	public string? Creator { get; set; }
 	public DateTimeOffset? CreateDate { get; set; }
-	public InitiateTransactionInfoModel? Info { get; set; }
+	public TransactionInfoModel? Info { get; set; }
 	public string? State { get; set; }
 	public string? Scope { get; set; }
 	public IEnumerable<string>? UserIds { get; set; }
