@@ -16,6 +16,7 @@ public class PendingApprovalModel
 	public DateTimeOffset? ApprovedDate { get; set; }
 	public DateTimeOffset? LastUpdated { get; set; }
 	public InfoModel? Info { get; set; }
+	public IEnumerable<string>? Approvers { get; set; }
 	public IEnumerable<Transfers.ResolverModel>? Resolvers { get; set; }
 	public IEnumerable<Wallets.AddressLabelModel>? AddressLabels { get; set; }
 }

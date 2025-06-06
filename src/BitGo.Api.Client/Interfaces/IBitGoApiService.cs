@@ -97,6 +97,22 @@ public interface IBitGoApiService
 		string token,
 		CancellationToken cancellationToken = default);
 
+	/// <summary>
+	/// Sends a transaction to multiple recipients for a specific coin and wallet.
+	/// </summary>
+	/// <param name="coin">The coin type (e.g., 'btc', 'eth').</param>
+	/// <param name="walletId">The unique identifier of the wallet.</param>
+	/// <param name="data">The data for sending to multiple recipients.</param>
+	/// <param name="token">The authentication token.</param>
+	/// <param name="cancellationToken">A token to cancel the async operation.</param>
+	/// <returns>The response from the send many operation.</returns>
+	Task<ApiResponse<SendManyModel>> SendManyAsync(
+		string coin,
+		string walletId,
+		RequestTransaction.SendManyModel data,
+		string token,
+		CancellationToken cancellationToken = default);
+
 	// pending approval
 
 	/// <summary>

@@ -4,10 +4,12 @@ using ResponseTransfer = BitGo.Api.Client.Models.Responses.Transfers;
 using RequestUser = BitGo.Api.Client.Models.Requests.Users;
 using ResponseUser = BitGo.Api.Client.Models.Responses.Users;
 using RequestTransaction = BitGo.Api.Client.Models.Requests.Transactions;
+using ResponseTransaction = BitGo.Api.Client.Models.Responses.Transactions;
 using ResponseWallet = BitGo.Api.Client.Models.Responses.Wallets;
 using Refit;
 using BitGo.Api.Client.Models.Responses.Transactions;
 using BitGo.Api.Client.Models.Responses.Transfers;
+using BitGo.Api.Client.Models.Requests.Transactions;
 
 namespace BitGo.Api.Client.Interfaces;
 
@@ -39,7 +41,7 @@ public interface IBitGoApi
 	/// https://developers.bitgo.com/api/v2.wallet.tx.initiate
 	/// </summary>
 	[Post("/{coin}/wallet/{walletId}/tx/initiate")]
-	Task<ApiResponse<InitiateTransactionModel>> InitiateTransactionAsync(
+	Task<ApiResponse<ResponseTransaction.InitiateTransactionModel>> InitiateTransactionAsync(
 			string coin,
 			string walletId,
 			[Body] RequestTransaction.InitiateTransactionModel data,
@@ -50,7 +52,7 @@ public interface IBitGoApi
 	/// https://developers.bitgo.com/api/v2.wallet.tx.build
 	/// </summary>
 	[Post("/{coin}/wallet/{walletId}/tx/build")]
-	Task<ApiResponse<BuildTransactionModel>> BuildTransactionAsync(
+	Task<ApiResponse<ResponseTransaction.BuildTransactionModel>> BuildTransactionAsync(
 		string coin,
 		string walletId,
 		[Body] RequestTransaction.BuildTransactionModel data,
@@ -65,6 +67,17 @@ public interface IBitGoApi
 		string coin,
 		string walletId,
 		[Body] RequestTransaction.SendHalfSignedTransactionModel data,
+		[Authorize("Bearer")] string token,
+		CancellationToken cancellationToken = default);
+
+	/// <summary>
+	/// https://developers.bitgo.com/api/express.wallet.sendmany
+	/// </summary>
+	[Post("/{coin}/wallet/{walletId}/sendmany")]
+	Task<ApiResponse<ResponseTransaction.SendManyModel>> SendManyAsync(
+		string coin,
+		string walletId,
+		[Body] RequestTransaction.SendManyModel data,
 		[Authorize("Bearer")] string token,
 		CancellationToken cancellationToken = default);
 

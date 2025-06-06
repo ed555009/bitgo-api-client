@@ -100,6 +100,14 @@ public class BitGoApiService(IBitGoApi bitGoApi) : IBitGoApiService
 		CancellationToken cancellationToken = default) =>
 			await _bitGoApi.SendHalfSignedTransactionAsync(coin, walletId, data, token, cancellationToken);
 
+	public async Task<ApiResponse<SendManyModel>> SendManyAsync(
+		string coin,
+		string walletId,
+		RequesTransaction.SendManyModel data,
+		string token,
+		CancellationToken cancellationToken = default) =>
+			await _bitGoApi.SendManyAsync(coin, walletId, data, token, cancellationToken);
+
 	public async Task<ApiResponse<ResponseUser.UnlockModel>> UnlockAsync(
 		RequestUser.UnlockModel data,
 		string token,
