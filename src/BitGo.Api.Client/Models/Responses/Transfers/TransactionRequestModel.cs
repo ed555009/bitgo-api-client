@@ -6,6 +6,7 @@ public class TransactionRequestModel
 {
 	public CoinSpecificModel? CoinSpecific { get; set; }
 	public string? Comment { get; set; }
+
 	// public string? Fee { get; set; }
 	public bool? IsUnsigned { get; set; }
 	public IEnumerable<RecipientModel>? Recipients { get; set; }
