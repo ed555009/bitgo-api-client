@@ -1,0 +1,71 @@
+---
+
+stages:
+- stage: Production
+  dependsOn: Build
+  condition: and(eq(variables['Build.SourceBranch'], 'refs/heads/main'), succeeded('Build'))
+  displayName: Production release
+  variables:
+  - group: bitgo-api-client
+  - group: Nuget
+
+  # Pack and upload package to NuGet
+  jobs:
+  - deployment: PackAndUpload
+    displayName: Pack and upload package to NuGet
+    environment: Production
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+
+          # checkout
+          - checkout: self
+
+          # download .NET sdk
+          - task: UseDotNet@2
+            displayName: Use .NET Core sdk $(Build.DotnetSdkVersion)
+            inputs:
+              version: $(Build.DotnetSdkVersion)
+
+          # pack
+          - task: DotNetCoreCLI@2
+            displayName: Pack
+            inputs:
+              command: pack
+              arguments: '-c $(Build.BuildConfiguration) -p:Version=$(Build.Version)'
+              packagesToPack: $(Build.BuildProjects)
+              versioningScheme: byEnvVar
+              versionEnvVar: Build.Version
+
+          # upload package
+          - task: DotNetCoreCLI@2
+            displayName: Upload package to NuGet
+            inputs:
+              command: custom
+              custom: nuget
+              arguments: 'push $(Build.ArtifactStagingDirectory)/**/*.nupkg -s $(Nuget.ApiUrl) -k $(Nuget.ApiKey)'
+
+  # Create tag
+  - deployment: CreateTag
+    displayName: Create tag
+    environment: Production
+    dependsOn: PackAndUpload
+    condition: succeeded()
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+
+          - download: none
+
+          # checkout
+          - checkout: self
+            persistCredentials: true
+
+          - script: |
+              git tag $(Build.Version)
+              git push origin $(Build.Version)
+            workingDirectory: $(Build.SourcesDirectory)
+
+...
